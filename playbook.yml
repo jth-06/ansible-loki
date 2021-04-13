@@ -2,5 +2,5 @@
 - name: Install Loki
   hosts: localhost
   roles:
-    - { role: ansible-role-loki }
+    - { role: ansible-role-loki2 }
     - { role: ansible-role-grafana }
