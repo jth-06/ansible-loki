@@ -1,0 +1,21 @@
+- name: Add repository
+  yum_repository:
+    name: grafana 
+    description: grafana repo
+    baseurl: https://packages.grafana.com/oss/rpm
+    gpgcheck: yes
+    gpgkey: https://packages.grafana.com/gpg.key
+    enabled: yes
+    sslverify: yes
+    sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+
+- name: Install grafana
+  ansible.builtin.package:
+    name: grafana
+    state: present
+
+- name: Start grafana service
+  ansible.builtin.systemd:
+    name: grafana-server
+    state: restarted
+    daemon_reload: yes
