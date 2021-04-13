@@ -1,1 +1,1 @@
-# ansible-loki
+# Loki and Grafana install
