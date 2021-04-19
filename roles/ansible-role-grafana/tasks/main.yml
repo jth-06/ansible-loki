@@ -1,6 +1,7 @@
+---
 - name: Add repository
   yum_repository:
-    name: grafana 
+    name: grafana
     description: grafana repo
     baseurl: https://packages.grafana.com/oss/rpm
     gpgcheck: yes

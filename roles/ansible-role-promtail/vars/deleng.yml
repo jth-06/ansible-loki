@@ -1,0 +1,14 @@
+# promtail_config_scrape_configs: []
+promtail_config_scrape_configs:
+  - job_name: deleng
+    loki_push_api:
+      server:
+        http_listen_port: 3500
+        grpc_listen_port: 3600
+      labels:
+        # Adds a label on all streams indicating it was processed by the lambda-promtail workflow.
+        promtail: 'lambda-deleng'
+    relabel_configs:
+        # Maps the cloudwatch log group into a label called `log_group` for use in Loki.
+      - source_labels: ['__aws_cloudwatch_log_group']
+        target_label: 'log_group'
