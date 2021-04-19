@@ -38,15 +38,15 @@
   when:
     - "('promtail-linux-amd64.zip') in item"
 
-- name: "Get EC2 metadata"
+- name: "Return Ec2 Metadata Facts"
   ec2_metadata_facts:
-    register: instance_meta
-  ec2_instance_info:
-    instance_ids:
-      - "{{ instance_meta.ansible_facts.ansible_ec2_instance_id }}"
-    region: "{{ instance_meta.ansible_facts.ansible_ec2_placement_region }}"
-    register: instance_info
-- name: Gather and Save Instance Info
+
+- name: "Return Ec2 Instance Facts"
+  ec2_instance_facts:
+    instance_id: "{{ ansible_ec2_instance_id }}"
+    region: "{{ ansible_ec2_placement_region }}"
+  register: ec2InstanceQuery
+
+- name: "Set Fact based on query"
   set_fact:
-    TLA: "{{ instance_info.instances | map(attribute='tags.TLA') | list | join('\n') }}"
-    Region: "{{ instance_meta.ansible_facts.ansible_ec2_placement_region }}"
+    TLA: "{{ ec2InstanceQuery['instances'] | map(attribute='tags.TLA') | list | join('\n') }}"
