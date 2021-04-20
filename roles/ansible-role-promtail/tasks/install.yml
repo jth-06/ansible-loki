@@ -89,6 +89,10 @@
 - name: Include variables for TLA.
   include_vars: "{{ TLA }}.yml"
 
+# Include variables for TLA.
+- name: Include variables for TLA.
+  include_vars: "{{ TLA }}.yml"
+
 - name: Write config
   notify:
     - Restart promtail
