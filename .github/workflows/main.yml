@@ -29,3 +29,5 @@ jobs:
       - name: YAML Lint
       # You may pin to the exact commit or the version
         uses: ibiqlik/action-yamllint@v3.0.0
+        with:
+          config_file: .yamllint.yml
