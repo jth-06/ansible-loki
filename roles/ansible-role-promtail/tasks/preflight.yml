@@ -50,3 +50,4 @@
 - name: "Set Fact based on query"
   set_fact:
     TLA: "{{ ec2InstanceQuery['instances'] | map(attribute='tags.TLA') | list | join('\n') }}"
+    
