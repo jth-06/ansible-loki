@@ -24,6 +24,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }})" >> $GITHUB_ENV
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -34,4 +37,4 @@ jobs:
         run: pip install yamllint
 
       - name: Lint YAML files
-        run: yamllint . --format parsable
+        run: yamllint $CHANGED_FILES --format parsable
