@@ -12,3 +12,4 @@ promtail_config_scrape_configs:
         # Maps the cloudwatch log group into a label called `log_group` for use in Loki.
       - source_labels: ['__aws_cloudwatch_log_group']
         target_label: 'log_group'
+        
