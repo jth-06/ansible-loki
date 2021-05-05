@@ -1,0 +1,10 @@
+---
+
+telegraf_tags_tla: 
+  tla: spb
+
+telegraf_plugins_extra:
+  - name: jolokia2_agent
+    options:
+      urls:
+        - "http://127.0.0.1:8778/jmxmetrics"
